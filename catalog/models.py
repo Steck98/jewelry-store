@@ -1,1 +1,21 @@
-"""Database models for the catalog app will go here."""
+from django.db import models
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    stock = models.IntegerField()
+    image = models.ImageField(upload_to="products/")
+    featured = models.BooleanField()
+
+    def __str__(self):
+        return self.name

@@ -1,1 +1,5 @@
-"""Admin registrations for the accounts app will go here."""
+from django.contrib import admin
+
+from .models import Address
+
+admin.site.register(Address)
