@@ -1,0 +1,288 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Jewelry</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+
+<div class="logo">
+    JEWELRY<span>.</span>
+</div>
+
+<nav class="nav-links">
+    <a href="#">Shop</a>
+    <a href="#">Collections</a>
+    <a href="#">About</a>
+</nav>
+
+<div class="nav-icons">
+    <a href="#">⌕</a>
+    <a href="#">♙</a>
+    <a href="#">🛒</a>
+</div>
+
+
+</header>
+
+<main>
+
+
+<!-- PROMO BANNER -->
+
+<section class="promo-banner">
+
+    <div class="promo-content">
+
+        <p class="promo-small">NEW COLLECTION</p>
+
+        <h1>
+            Timeless<br>
+            Elegance
+        </h1>
+
+        <p class="promo-text">
+            Discover jewelry designed to become part of your story.
+        </p>
+
+        <a href="#" class="gold-button">
+            Explore Collection
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURED PRODUCTS -->
+<section class="store-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p class="section-label">OUR SELECTION</p>
+            <h2>Featured Products</h2>
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORY TABS -->
+
+    <div class="category-tabs">
+        {% for category in categories %}
+            {% if forloop.first %}
+                <button class="category-tab active" data-category="{{ category.name }}">
+                    {{ category.name }}
+                </button>
+            {% else %}
+            <button class="category-tab " data-category="{{ category.name }}">
+                {{ category.name }}
+            </button>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+    <!-- ONE PRODUCT SLIDER -->
+
+    <div class="product-slider">
+
+
+        {% for product in products %}
+        <article class="product-card" data-category="{{ product.category }}">
+            {% if product.featured %}
+            <span class="featured-ribbon">FEATURED</span>
+            {% endif %}
+            <div class="product-image">
+                <img src="{{ product.image.url }}">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">{{ product.category }}</span>
+                <h3>{{ product.name }}</h3>
+                <p class="product-price">${{ product.price }}</p>
+            </div>
+
+        </article>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- COLLECTIONS -->
+
+<section class="store-section collections-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p class="section-label">DISCOVER</p>
+            <h2>Collections</h2>
+        </div>
+
+    </div>
+
+
+    <div class="category-slider">
+
+        <a href="#" class="category-card">
+            <div class="category-card-content">
+                <span>01</span>
+                <h3>Rings</h3>
+                <p>Explore collection</p>
+            </div>
+        </a>
+
+
+        <a href="#" class="category-card">
+            <div class="category-card-content">
+                <span>02</span>
+                <h3>Necklaces</h3>
+                <p>Explore collection</p>
+            </div>
+        </a>
+
+
+        <a href="#" class="category-card">
+            <div class="category-card-content">
+                <span>03</span>
+                <h3>Bracelets</h3>
+                <p>Explore collection</p>
+            </div>
+        </a>
+
+
+        <a href="#" class="category-card">
+            <div class="category-card-content">
+                <span>04</span>
+                <h3>Earrings</h3>
+                <p>Explore collection</p>
+            </div>
+        </a>
+
+
+        <a href="#" class="category-card">
+            <div class="category-card-content">
+                <span>05</span>
+                <h3>Gold Collection</h3>
+                <p>Explore collection</p>
+            </div>
+        </a>
+
+
+        <a href="#" class="category-card">
+            <div class="category-card-content">
+                <span>06</span>
+                <h3>Silver Collection</h3>
+                <p>Explore collection</p>
+            </div>
+        </a>
+
+
+        <a href="#" class="category-card">
+            <div class="category-card-content">
+                <span>07</span>
+                <h3>Luxury</h3>
+                <p>Explore collection</p>
+            </div>
+        </a>
+
+
+        <a href="#" class="category-card">
+            <div class="category-card-content">
+                <span>08</span>
+                <h3>New Arrivals</h3>
+                <p>Explore collection</p>
+            </div>
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+<footer class="footer">
+
+
+<div class="footer-logo">
+    JEWELRY<span>.</span>
+</div>
+
+<p>
+    Timeless jewelry. Designed with elegance.
+</p>
+
+<div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+</div>
+
+
+</footer>
+
+<script>
+    const categoryTabs = document.querySelectorAll(".category-tab");
+    const productCards = document.querySelectorAll(".product-card");
+
+
+    function showCategory(category) {
+
+        productCards.forEach(card => {
+
+            if (card.dataset.category === category) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+    }
+
+
+    categoryTabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+
+            const selectedCategory = tab.dataset.category;
+
+
+            categoryTabs.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            tab.classList.add("active");
+
+
+            showCategory(selectedCategory);
+
+        });
+
+    });
+
+
+    showCategory(categoryTabs[0].dataset.category);
+</script>
+
+</body>
+</html>
