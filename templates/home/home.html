@@ -1,225 +1,384 @@
-{% load static %}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
+{% block title %}
+    ALVEA | Timeless Jewelry
+{% endblock %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block content %}
 
+<!-- ================================
+     HERO
+================================= -->
 
-<title>Jewelry</title>
+<section class="home-hero">
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <div class="home-hero-content">
 
-
-</head>
-
-<body>
-
-<header class="navbar">
-
-
-<div class="logo">
-    JEWELRY<span>.</span>
-</div>
-
-<nav class="nav-links">
-    <a href="#">Shop</a>
-    <a href="#collections">Collections</a>
-    <a href="#">About</a>
-</nav>
-
-<div class="nav-icons">
-    <a href="#">⌕</a>
-    <a href="#">♙</a>
-    <a href="#">🛒</a>
-</div>
-
-
-</header>
-
-<main>
-
-
-<!-- PROMO BANNER -->
-
-<section class="promo-banner">
-
-    <div class="promo-content">
-
-        <p class="promo-small">NEW COLLECTION</p>
-
-        <h1>
-            Timeless<br>
-            Elegance
-        </h1>
-
-        <p class="promo-text">
-            Discover jewelry designed to become part of your story.
+        <p class="home-hero-label">
+            TIMELESS JEWELRY
         </p>
 
-        <a href="#" class="gold-button">
-            Explore Collection
-        </a>
+        <h1>
+            Elegance
+            <span>in every detail.</span>
+        </h1>
 
-    </div>
+        <p class="home-hero-text">
+            Discover timeless pieces designed to become
+            part of your everyday story.
+        </p>
 
-</section>
+        <div class="home-hero-actions">
 
-
-<!-- FEATURED PRODUCTS -->
-<section class="store-section">
-
-    <div class="section-heading">
-
-        <div>
-            <p class="section-label">OUR SELECTION</p>
-            <h2>Featured Products</h2>
-        </div>
-
-    </div>
-
-
-    <!-- CATEGORY TABS -->
-
-    <div class="category-tabs">
-        {% for category in categories %}
-            {% if forloop.first %}
-                <button class="category-tab active" data-category="{{ category.name }}">
-                    {{ category.name }}
-                </button>
-            {% else %}
-            <button class="category-tab " data-category="{{ category.name }}">
-                {{ category.name }}
-            </button>
-            {% endif %}
-        {% endfor %}
-    </div>
-
-
-    <!-- ONE PRODUCT SLIDER -->
-
-    <div class="product-slider">
-
-
-        {% for product in products %}
-        <article class="product-card" data-category="{{ product.category }}">
-            {% if product.featured %}
-            <span class="featured-ribbon">FEATURED</span>
-            {% endif %}
-            <a href="{% url 'product_detail' product.id %}" class="product-image">
-                <img src="{{ product.image.url }}">
+            <a href="#" class="gold-button">
+                Explore collection
             </a>
 
-            <div class="product-info">
-                <span class="product-category">{{ product.category }}</span>
-                <h3>{{ product.name }}</h3>
-                <p class="product-price">${{ product.price }}</p>
-            </div>
+            <a href="#" class="home-hero-link">
+                Our story
+            </a>
 
-        </article>
-        {% endfor %}
-
-    </div>
-
-</section>
-
-
-<!-- COLLECTIONS -->
-
-<section id="collections" class="store-section collections-section">
-
-    <div class="section-heading">
-
-        <div>
-            <p class="section-label">DISCOVER</p>
-            <h2>Collections</h2>
         </div>
 
     </div>
 
+</section>
 
-    <div class="category-slider">
-        {% for category in categories %}
-        <a href="#" class="category-card">
-            <div class="category-card-content">
-                <span>{{ forloop.counter }}</span>
-                <h3>{{ category.name }}</h3>
-                <p>Explore collection</p>
+
+
+<!-- ================================
+     ABOUT US
+================================= -->
+
+<section class="home-about" id="about">
+
+    <div class="home-about-image"></div>
+
+    <div class="home-about-content">
+
+        <p class="home-section-label">
+            ABOUT ALVEA
+        </p>
+
+        <h2>
+            Jewelry with a quiet
+            <span>sense of character.</span>
+        </h2>
+
+        <p>
+            ALVEA was created around a simple idea:
+            jewelry does not need to be loud to be noticed.
+        </p>
+
+        <p>
+            We create timeless pieces designed to become
+            part of everyday life — from meaningful moments
+            to the details that make an ordinary day special.
+        </p>
+
+        <p class="home-about-signature">
+            Designed with intention.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================================
+PARALLAX
+================================= -->
+
+<section class="home-parallax">
+
+<div class="home-parallax-content">
+
+   <p class="home-parallax-label">
+       THE ART OF JEWELRY
+   </p>
+
+   <h2>
+       Crafted for
+       everyday moments.
+   </h2>
+
+   <p>
+       Thoughtfully designed pieces made to stay
+       with you through every moment.
+   </p>
+
+</div>
+
+</section>
+<!-- ================================
+     FEATURED JEWELRY
+================================= -->
+
+<section class="home-featured">
+
+    <div class="home-section">
+
+        <div class="home-section-header">
+
+            <div>
+
+                <p class="home-section-label">
+                    CURATED FOR YOU
+                </p>
+
+                <h2 class="home-section-title">
+                    Featured Jewelry
+                </h2>
+
             </div>
-        </a>
-        {% endfor %}
+
+            <a href="#" class="home-section-link">
+                View all →
+            </a>
+
+        </div>
+
+
+        <div class="home-products-grid">
+
+            {% for product in featured_products %}
+
+                <a
+                    href="{% url 'product_detail' product.id %}"
+                    class="product-card"
+                >
+
+                    <div class="product-image">
+
+                        {% if product.image %}
+
+                            <img
+                                src="{{ product.image.url }}"
+                                alt="{{ product.name }}"
+                            >
+
+                        {% else %}
+
+                            <div class="product-image-placeholder">
+                                No image
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            {{ product.category.name }}
+                        </p>
+
+                        <h3>
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="product-price">
+                            ${{ product.price }}
+                        </p>
+
+                    </div>
+
+                </a>
+
+            {% empty %}
+
+                <p class="empty-products">
+                    No featured products available.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
     </div>
 
 </section>
 
 
-</main>
+<!-- ================================
+     COLLECTIONS
+================================= -->
 
-<footer class="footer">
+<section class="home-collections" id="collections">
 
+    <div class="home-section">
 
-<div class="footer-logo">
-    JEWELRY<span>.</span>
-</div>
+        <div class="home-section-header">
 
-<p>
-    Timeless jewelry. Designed with elegance.
-</p>
+            <div>
 
-<div class="footer-links">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Contact</a>
-</div>
+                <p class="home-section-label">
+                    EXPLORE
+                </p>
 
+                <h2 class="home-section-title">
+                    Our Collections
+                </h2>
 
-</footer>
+            </div>
 
-<script>
-    const categoryTabs = document.querySelectorAll(".category-tab");
-    const productCards = document.querySelectorAll(".product-card");
+        </div>
 
 
-    function showCategory(category) {
+        <div class="home-collections-grid">
 
-        productCards.forEach(card => {
+            {% for category in categories %}
 
-            if (card.dataset.category === category) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
-            }
+                <a href="#" class="home-collection-card">
 
-        });
+                    <div
+                        class="home-collection-card-image"
+                        style="background-image: url('../images/collection.jpg');"
+                    ></div>
 
-    }
+                    <div class="home-collection-card-content">
+
+                        <span>
+                            Collection
+                        </span>
+
+                        <h3>
+                            {{ category.name }}
+                        </h3>
+
+                    </div>
+
+                </a>
+
+            {% empty %}
+
+                <p>
+                    No collections available.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    categoryTabs.forEach(tab => {
+<!-- ================================
+     PARTNERS
+================================= -->
 
-        tab.addEventListener("click", () => {
+<section class="home-partners">
 
-            const selectedCategory = tab.dataset.category;
+    <div class="home-partners-inner">
+
+        <p class="home-partners-label">
+            OUR PARTNERS
+        </p>
+
+        <div class="home-partners-list">
+
+            <span class="home-partner">
+                AUREN
+            </span>
+
+            <span class="home-partner">
+                VELMONT
+            </span>
+
+            <span class="home-partner">
+                ORIAN
+            </span>
+
+            <span class="home-partner">
+                ATELIER 27
+            </span>
+
+            <span class="home-partner">
+                NOVA
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-            categoryTabs.forEach(item => {
-                item.classList.remove("active");
-            });
+<!-- ================================
+     OUR PROMISE
+================================= -->
 
-            tab.classList.add("active");
+<section class="home-promise">
+
+    <div class="home-promise-item">
+
+        <div class="home-promise-icon">
+            ◇
+        </div>
+
+        <h3>
+            Free Shipping
+        </h3>
+
+        <p>
+            Complimentary delivery on every order.
+        </p>
+
+    </div>
 
 
-            showCategory(selectedCategory);
+    <div class="home-promise-item">
 
-        });
+        <div class="home-promise-icon">
+            ↩
+        </div>
 
-    });
+        <h3>
+            Easy Returns
+        </h3>
+
+        <p>
+            30-day returns for complete peace of mind.
+        </p>
+
+    </div>
 
 
-    showCategory(categoryTabs[0].dataset.category);
-</script>
+    <div class="home-promise-item">
 
-</body>
-</html>
+        <div class="home-promise-icon">
+            ♢
+        </div>
+
+        <h3>
+            Secure Payment
+        </h3>
+
+        <p>
+            Safe and secure checkout every time.
+        </p>
+
+    </div>
+
+
+    <div class="home-promise-item">
+
+        <div class="home-promise-icon">
+            ∞
+        </div>
+
+        <h3>
+            Customer Support
+        </h3>
+
+        <p>
+            We're here whenever you need us.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

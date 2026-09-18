@@ -1,56 +1,240 @@
 :root {
-    --black: #080808;
-    --black-soft: #0e0d0c;
-    --marble: #151413;
-    --marble-light: #1c1a18;
 
-    --gold: #c7a35b;
-    --gold-light: #e0c27d;
-    --gold-dark: #94713a;
+    /* =========================================================
+       COLORS
+    ========================================================= */
 
-    --white: #f4f0e8;
-    --text: #ddd7cc;
-    --muted: #898278;
+    --background: #f4f1eb;
 
-    --border: rgba(199, 163, 91, 0.24);
-    --border-strong: rgba(199, 163, 91, 0.55);
+    --surface: #faf8f4;
 
-    --shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
-    --gold-glow: 0 0 25px rgba(199, 163, 91, 0.14);
+    --surface-muted: #eee9e0;
+
+    --surface-dark: #e5dfd5;
+
+    --gold: #b08a45;
+
+    --gold-light: #c9a968;
+
+    --gold-dark: #8d6b32;
+
+    --text: #292724;
+
+    --text-soft: #403c36;
+
+    --muted: #746f67;
+
+    --white: #fffdf9;
+
+
+    /* Compatibility variables
+       Used by older CSS files during the refactor */
+
+    --black: #292724;
+
+    --black-soft: #403c36;
+
+    --marble: #e8e2d8;
+
+    --marble-light: #f8f5ef;
+
+
+    /* =========================================================
+       BORDERS / SHADOWS
+    ========================================================= */
+
+    --border: rgba(80, 70, 55, 0.14);
+
+    --border-strong: rgba(176, 138, 69, 0.45);
+
+    --shadow:
+        0 10px 30px rgba(45, 38, 28, 0.08);
+
+    --shadow-soft:
+        0 4px 18px rgba(45, 38, 28, 0.06);
+
+    --gold-glow:
+        0 0 20px rgba(176, 138, 69, 0.10);
+
+
+    /* =========================================================
+       LAYOUT
+    ========================================================= */
 
     --page-width: 1500px;
 }
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(176, 138, 69, 0.08);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.scroll-progress-bar {
+    width: 0;
+    height: 100%;
+    background: var(--gold-light);
+}
+
+/* =========================================================
+   HIDE SCROLLBAR
+========================================================= */
+
+html {
+    overflow-x: hidden;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+
+    width: 0;
+    height: 0;
+}
 
 
-/* =========================
+/* =========================================================
    RESET
-========================= */
+========================================================= */
 
 * {
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
 
 body {
     min-width: 320px;
 
+    overflow-x: hidden;
+
     background:
         radial-gradient(
-            circle at 15% 20%,
-            rgba(199, 163, 91, 0.035),
+            circle at 10% 15%,
+            rgba(176, 138, 69, 0.045),
             transparent 30%
         ),
         radial-gradient(
-            circle at 85% 60%,
-            rgba(255, 255, 255, 0.025),
-            transparent 30%
+            circle at 90% 65%,
+            rgba(255, 255, 255, 0.65),
+            transparent 32%
         ),
-        var(--black);
+        var(--background);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        "Helvetica Neue",
+        sans-serif;
+
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+
+    text-rendering: optimizeLegibility;
+}
+
+
+a {
+    color: inherit;
+
+    text-decoration: none;
+}
+
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+img {
+    display: block;
+
+    max-width: 100%;
+}
+
+
+::selection {
+    color: var(--white);
+
+    background: var(--gold);
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+:focus-visible {
+    outline: 2px solid var(--gold);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    --nav-padding: clamp(20px, 5vw, 80px);
+
+    width: 100%;
+
+    min-height: 70px;
+
+    padding:
+        0
+        var(--nav-padding);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    background: rgba(250, 248, 244, 0.96);
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow:
+        0 3px 18px rgba(45, 38, 28, 0.04);
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    flex-shrink: 0;
 
     color: var(--text);
 
@@ -59,150 +243,274 @@ body {
         "Times New Roman",
         serif;
 
-    line-height: 1.5;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button {
-    font: inherit;
-}
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar {
-    width: 100%;
-    min-height: 82px;
-
-    padding:
-        0 clamp(20px, 5vw, 80px);
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 30px;
-
-    background: rgba(8, 8, 8, 0.96);
-
-    border-bottom: 1px solid var(--border);
-
-    position: relative;
-    z-index: 10;
-}
-
-.logo {
-    flex-shrink: 0;
-
-    color: var(--white);
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
     font-size: clamp(21px, 2vw, 27px);
+
     letter-spacing: 5px;
+
     white-space: nowrap;
 }
+
 
 .logo span {
     color: var(--gold);
 }
 
+
+/* =========================================================
+   NAVIGATION LINKS
+========================================================= */
+
 .nav-links {
+
     display: flex;
+
     align-items: center;
+
     gap: clamp(25px, 4vw, 60px);
 }
 
+
 .nav-links a {
+
     position: relative;
 
     color: var(--muted);
 
     font-family:
         Arial,
+        "Helvetica Neue",
         sans-serif;
 
     font-size: 12px;
+
+    font-weight: 500;
+
     text-transform: uppercase;
+
     letter-spacing: 2px;
 
-    transition: color 0.25s ease;
+    transition:
+        color 0.25s ease;
 }
 
+
 .nav-links a::after {
+
     content: "";
 
     position: absolute;
+
     left: 0;
+
     bottom: -8px;
 
     width: 0;
+
     height: 1px;
 
     background: var(--gold);
 
-    transition: width 0.25s ease;
+    transition:
+        width 0.25s ease;
 }
 
+
 .nav-links a:hover {
-    color: var(--gold-light);
+    color: var(--gold-dark);
 }
+
 
 .nav-links a:hover::after {
     width: 100%;
 }
 
-.nav-icons {
-    display: flex;
-    align-items: center;
 
-    gap: 18px;
+/* =========================================================
+   NAV ACTIONS
+   LOGIN + CART
+========================================================= */
+
+.nav-actions {
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: stretch;
 
     flex-shrink: 0;
+
+    margin-right:
+        calc(var(--nav-padding) * -1);
+
+    border-left: 1px solid var(--border);
+
+    background: var(--surface);
+}
+.cart-icon {
+    width: 25px;
+    height: 25px;
 }
 
-.nav-icons a {
-    width: 30px;
-    height: 30px;
+/* =========================================================
+   LOGIN
+========================================================= */
 
-    display: grid;
-    place-items: center;
+.login-link {
 
-    color: var(--muted);
+    height: 100%;
 
-    font-family: Arial, sans-serif;
-    font-size: 18px;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        0
+        28px;
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        "Helvetica Neue",
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+
+    border-right:
+        1px solid var(--border);
 
     transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+
+.login-link:hover {
+
+    color: var(--gold-dark);
+
+    background: var(--surface-muted);
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+.cart-link {
+
+    width: 68px;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--white);
+
+    background: var(--gold);
+
+    font-size: 24px;
+
+    transition:
+        background 0.25s ease;
+}
+
+
+.cart-link:hover {
+    background: var(--gold-dark);
+}
+
+
+/* =========================================================
+   SHARED BUTTON
+========================================================= */
+
+.gold-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding:
+        0
+        28px;
+
+    color: var(--white);
+
+    background: var(--gold);
+
+    border: 1px solid var(--gold);
+
+    font-family:
+        Arial,
+        "Helvetica Neue",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
         color 0.25s ease,
+        box-shadow 0.25s ease,
         transform 0.25s ease;
 }
 
-.nav-icons a:hover {
-    color: var(--gold);
-    transform: translateY(-2px);
+
+.gold-button:hover {
+
+    color: var(--white);
+
+    background: var(--gold-dark);
+
+    border-color: var(--gold-dark);
+
+    box-shadow: var(--gold-glow);
+
+    transform:
+        translateY(-1px);
 }
 
 
-/* =========================
+/* =========================================================
+   GENERIC LINKS
+========================================================= */
+
+a {
+    transition:
+        color 0.2s ease;
+}
+
+
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 .footer {
+
     width: 100%;
 
     padding:
@@ -210,46 +518,77 @@ img {
         clamp(25px, 7vw, 100px);
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 30px;
 
-    background: #050505;
+    background: var(--surface-dark);
 
     border-top: 1px solid var(--border);
 
     color: var(--muted);
 
-    font-family: Arial, sans-serif;
-    font-size: 11px;
+    font-family:
+        Arial,
+        "Helvetica Neue",
+        sans-serif;
+
+    font-size: 12px;
 }
 
-.footer-logo {
-    color: var(--white);
 
-    font-family: Georgia, serif;
+/* =========================================================
+   FOOTER LOGO
+========================================================= */
+
+.footer-logo {
+
+    color: var(--text);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
     font-size: 20px;
+
     letter-spacing: 4px;
 
     white-space: nowrap;
 }
 
+
 .footer-logo span {
     color: var(--gold);
 }
 
+
+/* =========================================================
+   FOOTER LINKS
+========================================================= */
+
 .footer-links {
+
     display: flex;
+
     gap: 25px;
 }
 
+
 .footer-links a {
-    transition: color 0.2s ease;
+
+    color: var(--muted);
+
+    transition:
+        color 0.2s ease;
 }
 
+
 .footer-links a:hover {
-    color: var(--gold);
+    color: var(--gold-dark);
 }
 
 
@@ -260,23 +599,50 @@ img {
 @media (max-width: 900px) {
 
     .navbar {
-        min-height: 72px;
+
+        --nav-padding: 25px;
+
+        min-height: 64px;
 
         padding:
-            0 25px;
+            0
+            var(--nav-padding);
     }
+
 
     .nav-links {
         gap: 25px;
     }
 
-    .nav-icons {
-        gap: 10px;
+
+    .nav-actions {
+
+        height: 64px;
+
+        margin-right:
+            calc(var(--nav-padding) * -1);
     }
 
+
+    .cart-link {
+
+        width: 62px;
+
+        height: 64px;
+    }
+
+
+    .login-link {
+        padding: 0 20px;
+    }
+
+
     .footer {
+
         flex-wrap: wrap;
+
         justify-content: center;
+
         text-align: center;
     }
 }
@@ -289,27 +655,37 @@ img {
 @media (max-width: 650px) {
 
     .navbar {
+
+        --nav-padding: 18px;
+
         min-height: auto;
 
         padding:
-            18px 18px;
+            18px
+            var(--nav-padding);
 
         flex-wrap: wrap;
+
         justify-content: center;
 
         gap: 15px;
     }
 
+
     .logo {
+
         width: 100%;
 
         text-align: center;
 
         font-size: 21px;
+
         letter-spacing: 4px;
     }
 
+
     .nav-links {
+
         order: 3;
 
         width: 100%;
@@ -319,40 +695,81 @@ img {
         gap: 22px;
 
         overflow-x: auto;
+
+        scrollbar-width: none;
     }
 
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+
     .nav-links a {
-        font-size: 9px;
+
+        font-size: 10px;
+
         letter-spacing: 1.5px;
 
         white-space: nowrap;
     }
 
-    .nav-icons {
+
+    .nav-actions {
+
         position: absolute;
 
-        right: 15px;
-        top: 18px;
+        right: 0;
+
+        top: 0;
+
+        height: 58px;
+
+        margin-right: 0;
+
+        border-left: 1px solid var(--border);
     }
 
-    .nav-icons a {
-        width: 24px;
-        height: 24px;
 
-        font-size: 16px;
+    .login-link {
+
+        padding:
+            0
+            14px;
+
+        font-size: 9px;
     }
+
+
+    .cart-link {
+
+        width: 52px;
+
+        height: 58px;
+
+        font-size: 21px;
+    }
+
 
     .footer {
+
         padding:
-            45px 20px;
+            45px
+            20px;
 
         flex-direction: column;
 
         gap: 20px;
     }
 
+
     .footer-links {
+
         gap: 18px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
     }
 }
 
@@ -367,12 +784,34 @@ img {
         gap: 17px;
     }
 
+
     .nav-links a {
-        font-size: 8px;
+        font-size: 9px;
     }
 
-    .nav-icons {
-        gap: 3px;
+
+    .nav-actions {
+        height: 54px;
+    }
+
+
+    .cart-link {
+
+        width: 48px;
+
+        height: 54px;
+
+        font-size: 19px;
+    }
+
+
+    .login-link {
+
+        padding:
+            0
+            11px;
+
+        font-size: 8px;
     }
 }
 
@@ -384,10 +823,17 @@ img {
 @media (min-width: 1800px) {
 
     .navbar {
+
+        --nav-padding:
+            max(
+                60px,
+                calc((100vw - 1700px) / 2)
+            );
+
         padding-left:
-            max(60px, calc((100vw - 1700px) / 2));
+            var(--nav-padding);
 
         padding-right:
-            max(60px, calc((100vw - 1700px) / 2));
+            var(--nav-padding);
     }
 }

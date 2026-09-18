@@ -1,101 +1,30 @@
-{% load static %}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
+{% block title %}
+    ALVEA | {{ product.name }}
+{% endblock %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block content %}
 
-    <title>{{ product.name }} | Jewelry</title>
+<section class="product-detail-page">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-
-<header class="navbar">
-
-    <div class="logo">
-        JEWELRY<span>.</span>
-    </div>
-
-    <nav class="nav-links">
-        <a href="/">Shop</a>
-        <a href="/#collections">Collections</a>
-        <a href="/#about">About</a>
-    </nav>
-
-    <div class="nav-icons">
-        <a href="#">⌕</a>
-        <a href="#">♙</a>
-        <a href="#">🛒</a>
-    </div>
-
-</header>
+    <a href="/products/" class="back-link">
+        ← Back to shop
+    </a>
 
 
-<main>
+    <div class="product-detail">
 
-    <section class="product-detail-page">
+        <div class="product-detail-image-frame">
 
-        <a href="/products/" class="back-link">
-            ← Back to shop
-        </a>
+            <div class="product-detail-image">
 
+                {% if product.image %}
 
-        <div class="product-detail">
-
-            <div class="product-detail-image-frame">
-
-                <div class="product-detail-image">
-
-                    {% if product.image %}
-                        <img
-                            src="{{ product.image.url }}"
-                            alt="{{ product.name }}"
-                        >
-                    {% endif %}
-
-                </div>
-
-            </div>
-
-
-            <div class="product-detail-info">
-
-                <span class="product-detail-category">
-                    {{ product.category }}
-                </span>
-
-                <h1>
-                    {{ product.name }}
-                </h1>
-
-                <p class="product-detail-description">
-                    {{ product.description }}
-                </p>
-
-                <p class="product-detail-price">
-                    ${{ product.price }}
-                </p>
-
-
-                {% if product.stock > 0 %}
-
-                    <button type="button" class="add-to-cart-btn">
-                        Add to cart
-                    </button>
-
-                {% else %}
-
-                    <button
-                        type="button"
-                        class="add-to-cart-btn disabled"
-                        disabled
+                    <img
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}"
                     >
-                        Out of stock
-                    </button>
 
                 {% endif %}
 
@@ -103,28 +32,51 @@
 
         </div>
 
-    </section>
 
-</main>
+        <div class="product-detail-info">
+
+            <span class="product-detail-category">
+                {{ product.category }}
+            </span>
+
+            <h1>
+                {{ product.name }}
+            </h1>
+
+            <p class="product-detail-description">
+                {{ product.description }}
+            </p>
+
+            <p class="product-detail-price">
+                ${{ product.price }}
+            </p>
 
 
-<footer class="footer">
+            {% if product.stock > 0 %}
 
-    <div class="footer-logo">
-        JEWELRY<span>.</span>
+                <button
+                    type="button"
+                    class="add-to-cart-btn"
+                >
+                    Add to cart
+                </button>
+
+            {% else %}
+
+                <button
+                    type="button"
+                    class="add-to-cart-btn disabled"
+                    disabled
+                >
+                    Out of stock
+                </button>
+
+            {% endif %}
+
+        </div>
+
     </div>
 
-    <p>
-        Timeless jewelry. Designed with elegance.
-    </p>
+</section>
 
-    <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Contact</a>
-    </div>
-
-</footer>
-
-</body>
-</html>
+{% endblock %}
