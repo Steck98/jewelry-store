@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | Jewelry</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        JEWELRY<span>.</span>
+    </div>
+
+    <nav class="nav-links">
+        <a href="/">Shop</a>
+        <a href="/#collections">Collections</a>
+        <a href="/#about">About</a>
+    </nav>
+
+    <div class="nav-icons">
+        <a href="#">⌕</a>
+        <a href="#">♙</a>
+        <a href="#">🛒</a>
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="product-detail-page">
+
+        <a href="/products/" class="back-link">
+            ← Back to shop
+        </a>
+
+
+        <div class="product-detail">
+
+            <div class="product-detail-image-frame">
+
+                <div class="product-detail-image">
+
+                    {% if product.image %}
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}"
+                        >
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="product-detail-info">
+
+                <span class="product-detail-category">
+                    {{ product.category }}
+                </span>
+
+                <h1>
+                    {{ product.name }}
+                </h1>
+
+                <p class="product-detail-description">
+                    {{ product.description }}
+                </p>
+
+                <p class="product-detail-price">
+                    ${{ product.price }}
+                </p>
+
+
+                {% if product.stock > 0 %}
+
+                    <button type="button" class="add-to-cart-btn">
+                        Add to cart
+                    </button>
+
+                {% else %}
+
+                    <button
+                        type="button"
+                        class="add-to-cart-btn disabled"
+                        disabled
+                    >
+                        Out of stock
+                    </button>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        JEWELRY<span>.</span>
+    </div>
+
+    <p>
+        Timeless jewelry. Designed with elegance.
+    </p>
+
+    <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+    </div>
+
+</footer>
+
+</body>
+</html>

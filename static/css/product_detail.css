@@ -1,0 +1,369 @@
+/* =========================================================
+   PRODUCT DETAIL PAGE
+========================================================= */
+
+.product-detail-page {
+    width: min(
+        calc(100% - clamp(30px, 8vw, 140px)),
+        1200px
+    );
+
+    margin: 0 auto;
+
+    padding:
+        55px
+        0
+        120px;
+}
+
+
+/* =========================================================
+   BACK TO SHOP
+========================================================= */
+
+.back-link {
+    display: inline-block;
+
+    margin-bottom: 40px;
+
+    color: var(--muted);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    transition: color 0.25s ease;
+}
+
+.back-link:hover {
+    color: var(--gold-light);
+}
+
+
+/* =========================================================
+   MAIN PRODUCT LAYOUT
+========================================================= */
+
+.product-detail {
+    display: grid;
+
+    grid-template-columns:
+        minmax(350px, 520px)
+        minmax(300px, 1fr);
+
+    gap: clamp(50px, 7vw, 90px);
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   IMAGE FRAME
+========================================================= */
+
+.product-detail-image-frame {
+    width: 100%;
+
+    max-width: 520px;
+
+    padding: 8px;
+
+    border: 1px solid var(--border-strong);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(199, 163, 91, 0.18),
+            transparent 35%,
+            transparent 65%,
+            rgba(199, 163, 91, 0.10)
+        );
+
+    box-shadow:
+        var(--gold-glow);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.product-detail-image {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: var(--marble);
+}
+
+.product-detail-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.5s ease;
+}
+
+.product-detail-image:hover img {
+    transform: scale(1.02);
+}
+
+
+/* =========================================================
+   PRODUCT INFORMATION
+========================================================= */
+
+.product-detail-info {
+    max-width: 500px;
+}
+
+.product-detail-category {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--gold);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   PRODUCT NAME
+========================================================= */
+
+.product-detail-info h1 {
+    margin: 0 0 25px;
+
+    color: var(--gold-light);
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(32px, 3.5vw, 46px);
+
+    font-weight: normal;
+
+    line-height: 1.15;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.product-detail-description {
+    max-width: 470px;
+
+    margin-bottom: 30px;
+
+    color: var(--text);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.product-detail-price {
+    margin-bottom: 30px;
+
+    color: var(--gold);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+.add-to-cart-btn {
+    width: 100%;
+
+    max-width: 320px;
+
+    min-height: 50px;
+
+    padding: 0 28px;
+
+    color: var(--gold-light);
+
+    background: rgba(199, 163, 91, 0.08);
+
+    border: 1px solid var(--border-strong);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.add-to-cart-btn:hover {
+    color: var(--black);
+
+    background: var(--gold);
+
+    box-shadow: var(--gold-glow);
+}
+
+
+/* =========================================================
+   OUT OF STOCK
+========================================================= */
+
+.add-to-cart-btn.disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+.add-to-cart-btn.disabled:hover {
+    color: var(--gold-light);
+
+    background: rgba(199, 163, 91, 0.08);
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .product-detail-page {
+        width: calc(100% - 60px);
+
+        padding:
+            45px
+            0
+            100px;
+    }
+
+    .product-detail {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .product-detail-image-frame {
+        max-width: 520px;
+
+        margin: 0 auto;
+    }
+
+    .product-detail-info {
+        max-width: 520px;
+
+        margin: 0 auto;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .product-detail-page {
+        width: calc(100% - 24px);
+
+        padding:
+            30px
+            0
+            80px;
+    }
+
+    .back-link {
+        margin-bottom: 30px;
+
+        font-size: 9px;
+    }
+
+    .product-detail {
+        gap: 35px;
+    }
+
+    .product-detail-image-frame {
+        padding: 5px;
+    }
+
+    .product-detail-info {
+        max-width: none;
+    }
+
+    .product-detail-info h1 {
+        font-size: 36px;
+
+        white-space: normal;
+    }
+
+    .product-detail-description {
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+    .product-detail-price {
+        margin-bottom: 25px;
+
+        font-size: 18px;
+    }
+
+    .add-to-cart-btn {
+        max-width: none;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .product-detail-info h1 {
+        font-size: 32px;
+    }
+}
