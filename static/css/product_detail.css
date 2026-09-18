@@ -1,8 +1,10 @@
 /* =========================================================
    PRODUCT DETAIL PAGE
-========================================================= */
+   ========================================================= */
 
 .product-detail-page {
+    position: relative;
+
     width: min(
         calc(100% - clamp(30px, 8vw, 140px)),
         1200px
@@ -19,9 +21,11 @@
 
 /* =========================================================
    BACK TO SHOP
-========================================================= */
+   ========================================================= */
 
 .back-link {
+    position: relative;
+
     display: inline-block;
 
     margin-bottom: 40px;
@@ -29,25 +33,45 @@
     color: var(--muted);
 
     font-family: Arial, sans-serif;
-
     font-size: 10px;
-
     letter-spacing: 2px;
     text-transform: uppercase;
 
     transition: color 0.25s ease;
 }
 
+.back-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 28px;
+    height: 1px;
+
+    background: var(--gold-light);
+
+    transition: width 0.25s ease;
+}
+
 .back-link:hover {
-    color: var(--gold-light);
+    color: var(--gold-dark);
+}
+
+.back-link:hover::after {
+    width: 100%;
 }
 
 
 /* =========================================================
    MAIN PRODUCT LAYOUT
-========================================================= */
+   ========================================================= */
 
 .product-detail {
+    position: relative;
+
     display: grid;
 
     grid-template-columns:
@@ -56,17 +80,50 @@
 
     gap: clamp(50px, 7vw, 90px);
 
-    align-items: center;
+    align-items: start;
 }
 
 
 /* =========================================================
-   IMAGE FRAME
-========================================================= */
+   DECORATIVE BACKGROUND WORD
+   ========================================================= */
+
+.product-detail::before {
+    content: "ALVEA";
+
+    position: absolute;
+
+    top: 35%;
+    right: -170px;
+
+    color: rgba(176, 138, 69, 0.035);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(100px, 14vw, 210px);
+    font-weight: 400;
+
+    letter-spacing: 18px;
+
+    pointer-events: none;
+
+    white-space: nowrap;
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   IMAGE AREA
+   ========================================================= */
 
 .product-detail-image-frame {
-    width: 100%;
+    position: relative;
 
+    width: 100%;
     max-width: 520px;
 
     padding: 8px;
@@ -76,37 +133,100 @@
     background:
         linear-gradient(
             135deg,
-            rgba(199, 163, 91, 0.18),
+            rgba(176, 138, 69, 0.12),
             transparent 35%,
             transparent 65%,
-            rgba(199, 163, 91, 0.10)
+            rgba(176, 138, 69, 0.06)
         );
 
-    box-shadow:
-        var(--gold-glow);
+    box-shadow: var(--gold-glow);
+}
+
+
+/* =========================================================
+   DECORATIVE CIRCLE
+   ========================================================= */
+
+.product-detail-image-frame::before {
+    content: "";
+
+    position: absolute;
+
+    width: 440px;
+    height: 440px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(176, 138, 69, 0.18);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   SECOND DECORATIVE CIRCLE
+   ========================================================= */
+
+.product-detail-image-frame::after {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(176, 138, 69, 0.07);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 0;
 }
 
 
 /* =========================================================
    IMAGE
-========================================================= */
+   ========================================================= */
 
 .product-detail-image {
+    position: relative;
+    z-index: 1;
+
     width: 100%;
 
     aspect-ratio: 1 / 1;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     overflow: hidden;
 
-    background: var(--marble);
+    background:
+        radial-gradient(
+            circle at center,
+            var(--surface),
+            var(--surface-dark)
+        );
 }
 
 .product-detail-image img {
+    position: relative;
+    z-index: 2;
+
     width: 100%;
     height: 100%;
 
@@ -117,28 +237,57 @@
 }
 
 .product-detail-image:hover img {
-    transform: scale(1.02);
+    transform: scale(1.025);
 }
 
 
 /* =========================================================
    PRODUCT INFORMATION
-========================================================= */
+   ========================================================= */
 
 .product-detail-info {
+    position: relative;
+
     max-width: 500px;
+
+    padding-top: 5px;
 }
+
+
+/* =========================================================
+   SMALL DECORATIVE ORNAMENT
+   ========================================================= */
+
+.product-detail-info::before {
+    content: "✦";
+
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: var(--gold);
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   PRODUCT CATEGORY
+   ========================================================= */
 
 .product-detail-category {
     display: block;
 
     margin-bottom: 12px;
 
-    color: var(--gold);
+    color: var(--gold-dark);
 
     font-family: Arial, sans-serif;
-
     font-size: 9px;
+    font-weight: 600;
 
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -147,35 +296,58 @@
 
 /* =========================================================
    PRODUCT NAME
-========================================================= */
+   ========================================================= */
 
 .product-detail-info h1 {
+    position: relative;
+
     margin: 0 0 25px;
 
-    color: var(--gold-light);
+    padding-bottom: 24px;
 
-    font-family: Georgia, serif;
+    color: var(--text);
 
-    font-size: clamp(32px, 3.5vw, 46px);
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-    font-weight: normal;
+    font-size: clamp(34px, 3.5vw, 48px);
+    font-weight: 400;
 
     line-height: 1.15;
+}
 
-    white-space: nowrap;
+
+/* =========================================================
+   LINE UNDER PRODUCT NAME
+   ========================================================= */
+
+.product-detail-info h1::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 55px;
+    height: 1px;
+
+    background: var(--gold);
 }
 
 
 /* =========================================================
    DESCRIPTION
-========================================================= */
+   ========================================================= */
 
 .product-detail-description {
     max-width: 470px;
 
     margin-bottom: 30px;
 
-    color: var(--text);
+    color: var(--muted);
 
     font-family: Arial, sans-serif;
 
@@ -187,68 +359,129 @@
 
 /* =========================================================
    PRICE
-========================================================= */
+   ========================================================= */
 
 .product-detail-price {
+    position: relative;
+
     margin-bottom: 30px;
 
-    color: var(--gold);
+    padding-top: 22px;
+
+    color: var(--gold-dark);
 
     font-family: Arial, sans-serif;
 
     font-size: 20px;
+    font-weight: 600;
 
     letter-spacing: 1px;
+}
+
+.product-detail-price::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    max-width: 470px;
+
+    height: 1px;
+
+    background: var(--border);
 }
 
 
 /* =========================================================
    ADD TO CART
-========================================================= */
+   ========================================================= */
 
 .add-to-cart-btn {
-    width: 100%;
+    position: relative;
 
+    width: 100%;
     max-width: 320px;
 
     min-height: 50px;
 
     padding: 0 28px;
 
-    color: var(--gold-light);
+    color: var(--white);
 
-    background: rgba(199, 163, 91, 0.08);
+    background: var(--gold);
 
-    border: 1px solid var(--border-strong);
+    border: 1px solid var(--gold);
 
     font-family: Arial, sans-serif;
 
     font-size: 10px;
-    font-weight: bold;
+    font-weight: 600;
 
     letter-spacing: 2px;
     text-transform: uppercase;
 
     cursor: pointer;
 
+    overflow: hidden;
+
     transition:
         background 0.25s ease,
+        border-color 0.25s ease,
         color 0.25s ease,
-        box-shadow 0.25s ease;
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* =========================================================
+   BUTTON DECORATIVE SHINE
+   ========================================================= */
+
+.add-to-cart-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.18),
+            transparent
+        );
+
+    transition: left 0.5s ease;
+}
+
+.add-to-cart-btn:hover::before {
+    left: 100%;
 }
 
 .add-to-cart-btn:hover {
-    color: var(--black);
+    color: var(--white);
 
-    background: var(--gold);
+    background: var(--gold-dark);
+
+    border-color: var(--gold-dark);
 
     box-shadow: var(--gold-glow);
+
+    transform: translateY(-1px);
 }
 
 
 /* =========================================================
    OUT OF STOCK
-========================================================= */
+   ========================================================= */
 
 .add-to-cart-btn.disabled {
     opacity: 0.45;
@@ -257,17 +490,25 @@
 }
 
 .add-to-cart-btn.disabled:hover {
-    color: var(--gold-light);
+    color: var(--white);
 
-    background: rgba(199, 163, 91, 0.08);
+    background: var(--gold);
+
+    border-color: var(--gold);
 
     box-shadow: none;
+
+    transform: none;
+}
+
+.add-to-cart-btn.disabled::before {
+    display: none;
 }
 
 
 /* =========================================================
    TABLET
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -286,23 +527,39 @@
         gap: 50px;
     }
 
+    .product-detail::before {
+        display: none;
+    }
+
     .product-detail-image-frame {
         max-width: 520px;
 
         margin: 0 auto;
     }
 
+    .product-detail-image-frame::before {
+        width: 420px;
+        height: 420px;
+    }
+
+    .product-detail-image-frame::after {
+        width: 480px;
+        height: 480px;
+    }
+
     .product-detail-info {
         max-width: 520px;
 
         margin: 0 auto;
+
+        padding-top: 0;
     }
 }
 
 
 /* =========================================================
    MOBILE
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 650px) {
 
@@ -327,6 +584,16 @@
 
     .product-detail-image-frame {
         padding: 5px;
+    }
+
+    .product-detail-image-frame::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .product-detail-image-frame::after {
+        width: 340px;
+        height: 340px;
     }
 
     .product-detail-info {
@@ -359,11 +626,21 @@
 
 /* =========================================================
    SMALL PHONES
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 400px) {
 
     .product-detail-info h1 {
         font-size: 32px;
+    }
+
+    .product-detail-image-frame::before {
+        width: 260px;
+        height: 260px;
+    }
+
+    .product-detail-image-frame::after {
+        width: 295px;
+        height: 295px;
     }
 }

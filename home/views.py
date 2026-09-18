@@ -4,8 +4,10 @@ from catalog.models import Category, Product
 
 
 def home(request):
-    products = Product.objects.all()
+    featured_products = Product.objects.filter(featured=True)[:4]
     categories = Category.objects.all()
     return render(
-        request, "home/home.html", {"products": products, "categories": categories}
+        request,
+        "home/home.html",
+        {"featured_products": featured_products, "categories": categories},
     )
