@@ -26,7 +26,7 @@
 
 <nav class="nav-links">
     <a href="#">Shop</a>
-    <a href="#">Collections</a>
+    <a href="#collections">Collections</a>
     <a href="#">About</a>
 </nav>
 
@@ -108,9 +108,9 @@
             {% if product.featured %}
             <span class="featured-ribbon">FEATURED</span>
             {% endif %}
-            <div class="product-image">
+            <a href="{% url 'product_detail' product.id %}" class="product-image">
                 <img src="{{ product.image.url }}">
-            </div>
+            </a>
 
             <div class="product-info">
                 <span class="product-category">{{ product.category }}</span>
@@ -128,7 +128,7 @@
 
 <!-- COLLECTIONS -->
 
-<section class="store-section collections-section">
+<section id="collections" class="store-section collections-section">
 
     <div class="section-heading">
 
@@ -141,78 +141,15 @@
 
 
     <div class="category-slider">
-
+        {% for category in categories %}
         <a href="#" class="category-card">
             <div class="category-card-content">
-                <span>01</span>
-                <h3>Rings</h3>
+                <span>{{ forloop.counter }}</span>
+                <h3>{{ category.name }}</h3>
                 <p>Explore collection</p>
             </div>
         </a>
-
-
-        <a href="#" class="category-card">
-            <div class="category-card-content">
-                <span>02</span>
-                <h3>Necklaces</h3>
-                <p>Explore collection</p>
-            </div>
-        </a>
-
-
-        <a href="#" class="category-card">
-            <div class="category-card-content">
-                <span>03</span>
-                <h3>Bracelets</h3>
-                <p>Explore collection</p>
-            </div>
-        </a>
-
-
-        <a href="#" class="category-card">
-            <div class="category-card-content">
-                <span>04</span>
-                <h3>Earrings</h3>
-                <p>Explore collection</p>
-            </div>
-        </a>
-
-
-        <a href="#" class="category-card">
-            <div class="category-card-content">
-                <span>05</span>
-                <h3>Gold Collection</h3>
-                <p>Explore collection</p>
-            </div>
-        </a>
-
-
-        <a href="#" class="category-card">
-            <div class="category-card-content">
-                <span>06</span>
-                <h3>Silver Collection</h3>
-                <p>Explore collection</p>
-            </div>
-        </a>
-
-
-        <a href="#" class="category-card">
-            <div class="category-card-content">
-                <span>07</span>
-                <h3>Luxury</h3>
-                <p>Explore collection</p>
-            </div>
-        </a>
-
-
-        <a href="#" class="category-card">
-            <div class="category-card-content">
-                <span>08</span>
-                <h3>New Arrivals</h3>
-                <p>Explore collection</p>
-            </div>
-        </a>
-
+        {% endfor %}
     </div>
 
 </section>
