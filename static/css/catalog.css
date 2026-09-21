@@ -1,159 +1,194 @@
 /* =========================================================
-   CATEGORY TABS
+   CATALOG PAGE
 ========================================================= */
 
-.category-tabs {
+.catalog-page {
+    width: min(1500px, 90%);
+    margin: 0 auto;
+    padding: 70px 0 110px;
+}
+
+
+/* =========================================================
+   CATALOG HEADER
+========================================================= */
+
+.catalog-header {
+    position: relative;
+
+    width: 100%;
+    min-height: 460px;
+
     display: flex;
+    flex-direction: column;
     align-items: center;
-
-    gap: clamp(18px, 4vw, 45px);
-
-    margin-bottom: 25px;
-
-    overflow-x: auto;
-
-    scrollbar-width: none;
-}
-
-.category-tabs::-webkit-scrollbar {
-    display: none;
-}
-
-.category-tab {
-    position: relative;
-
-    flex-shrink: 0;
-
-    padding:
-        8px 0 13px;
-
-    color: var(--muted);
-
-    background: none;
-
-    border: 0;
-
-    cursor: pointer;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 11px;
-
-    letter-spacing: 2px;
-    text-transform: uppercase;
-
-    transition: color 0.25s ease;
-}
-
-.category-tab::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: 0;
-
-    width: 0;
-    height: 1px;
-
-    background: var(--gold);
-
-    transition: width 0.25s ease;
-}
-
-.category-tab:hover,
-.category-tab.active {
-    color: var(--gold-light);
-}
-
-.category-tab.active::after {
-    width: 100%;
-}
-
-
-/* =========================================================
-   PRODUCT SLIDER
-========================================================= */
-
-.product-slider {
-    width: 100%;
-
-    display: flex;
-
-    gap: clamp(14px, 1.5vw, 24px);
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    padding:
-        5px
-        5px
-        25px;
-
-    scroll-behavior: smooth;
-
-    scrollbar-width: thin;
-
-    scrollbar-color:
-        var(--gold-dark)
-        var(--black-soft);
-
-    -webkit-overflow-scrolling: touch;
-}
-
-.product-slider::-webkit-scrollbar {
-    height: 5px;
-}
-
-.product-slider::-webkit-scrollbar-track {
-    background: var(--black-soft);
-}
-
-.product-slider::-webkit-scrollbar-thumb {
-    background: var(--gold-dark);
-
-    border-radius: 10px;
-}
-
-.product-slider::-webkit-scrollbar-thumb:hover {
-    background: var(--gold);
-}
-
-
-/* =========================================================
-   PRODUCT CARD
-========================================================= */
-
-.product-card {
-    position: relative;
-
-    flex: 0 0 clamp(220px, 18vw, 270px);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.025),
-            transparent 45%
-        ),
-        var(--marble);
-
-    border: 1px solid var(--border);
-
-    border-radius: 7px;
+    justify-content: center;
 
     overflow: hidden;
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(244, 241, 235, 0.96) 0%,
+            rgba(244, 241, 235, 0.88) 25%,
+            rgba(244, 241, 235, 0.68) 50%,
+            rgba(244, 241, 235, 0.88) 75%,
+            rgba(244, 241, 235, 0.96) 100%
+        ),
+        url("../images/parallax.jpg") center / cover no-repeat;
+}
+.catalog-header::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 140px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(244, 241, 235, 0),
+            var(--background)
+        );
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+.catalog-header > * {
+    position: relative;
+    z-index: 1;
+}
+
+.catalog-eyebrow {
+    margin-bottom: 14px;
+
+    color: var(--gold-dark);
+
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.catalog-header h1 {
+    margin: 0 0 18px;
+
+    color: var(--text);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.catalog-header p {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   CATEGORY NAVIGATION
+========================================================= */
+
+.catalog-categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 55px;
+}
+
+.category-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 95px;
+
+    padding: 11px 20px;
+
+    color: var(--muted);
+    background: transparent;
+
+    border: 1px solid var(--border);
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+
+    text-decoration: none;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.category-link:hover {
+    color: var(--white);
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.catalog-products {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 28px;
+}
+
+
+/* =========================================================
+   CATALOG PRODUCT CARD
+========================================================= */
+
+.catalog-product-card {
+    position: relative;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-soft);
 
     transition:
         transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
-.product-card:hover {
-    transform: translateY(-6px);
+.catalog-product-card:hover {
+    transform: translateY(-5px);
 
     border-color: var(--border-strong);
 
@@ -162,105 +197,99 @@
         var(--gold-glow);
 }
 
-.product-image {
+
+/* =========================================================
+   CATALOG PRODUCT IMAGE
+========================================================= */
+
+.catalog-product-image {
+    display: block;
+
     width: 100%;
 
     aspect-ratio: 4 / 5;
 
     overflow: hidden;
 
-    background: var(--marble-light);
-    display: block;
-    text-decoration: none;
-    color: inherit;
+    background: var(--surface-dark);
 }
 
-.product-image img {
+.catalog-product-image img {
+    display: block;
+
     width: 100%;
     height: 100%;
 
     object-fit: cover;
 
-    transition:
-        transform 0.5s ease;
+    transition: transform 0.5s ease;
 }
 
-.product-card:hover .product-image img {
-    transform: scale(1.05);
-}
-
-.product-info {
-    padding:
-        17px 18px 20px;
-}
-
-.product-category {
-    display: block;
-
-    margin-bottom: 6px;
-
-    color: var(--gold);
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.product-info h3 {
-    margin-bottom: 8px;
-
-    color: var(--white);
-
-    font-size: 20px;
-    font-weight: normal;
-
-    line-height: 1.2;
-}
-
-.product-price {
-    color: var(--text);
-
-    font-family: Arial, sans-serif;
-
-    font-size: 13px;
+.catalog-product-card:hover
+.catalog-product-image img {
+    transform: scale(1.04);
 }
 
 
 /* =========================================================
-   FEATURED RIBBON
+   CATALOG PRODUCT INFO
 ========================================================= */
 
-.featured-ribbon {
-    position: absolute;
+.catalog-product-info {
+    padding: 20px 21px 23px;
+}
 
-    top: 18px;
-    right: -32px;
+.catalog-product-category {
+    display: block;
 
-    z-index: 2;
+    margin-bottom: 7px;
 
-    width: 125px;
-
-    padding: 6px 0;
-
-    color: var(--black);
-
-    background: var(--gold);
+    color: var(--gold-dark);
 
     font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+}
 
-    font-size: 8px;
-    font-weight: bold;
+.catalog-product-info h2 {
+    margin: 0 0 9px;
 
-    letter-spacing: 1.5px;
+    color: var(--text);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.catalog-product-info p {
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.catalog-empty {
+    grid-column: 1 / -1;
+
+    padding: 80px 20px;
+
+    color: var(--muted);
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
     text-align: center;
-
-    transform: rotate(45deg);
-
-    box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.35);
 }
 
 
@@ -268,10 +297,30 @@
    TABLET
 ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 
-    .product-card {
-        flex-basis: 235px;
+    .catalog-products {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .catalog-page {
+        padding: 70px 0 90px;
+    }
+
+    .catalog-products {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 20px;
+    }
+
+    .catalog-product-info {
+        padding: 17px 18px 20px;
     }
 }
 
@@ -280,88 +329,55 @@
    MOBILE
 ========================================================= */
 
-@media (max-width: 650px) {
+@media (max-width: 550px) {
 
-    .category-tabs {
-        gap: 22px;
+    .catalog-page {
+        width: 92%;
 
-        margin-bottom: 20px;
-
-        padding-bottom: 2px;
+        padding: 55px 0 70px;
     }
 
-    .category-tab {
-        font-size: 9px;
-        letter-spacing: 1.5px;
+    .catalog-header {
+        margin-bottom: 40px;
     }
 
-    .product-slider {
-        gap: 12px;
-
-        padding:
-            3px
-            3px
-            20px;
+    .catalog-header h1 {
+        font-size: 42px;
     }
 
-    .product-card {
-        flex:
-            0 0 calc(50vw - 24px);
-
-        min-width: 150px;
-        max-width: 205px;
+    .catalog-header p {
+        font-size: 13px;
     }
 
-    .product-info {
-        padding:
-            13px
-            13px
-            16px;
+
+    .catalog-categories {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+
+        overflow-x: auto;
+
+        margin-bottom: 40px;
+        padding-bottom: 5px;
+
+        scrollbar-width: none;
     }
 
-    .product-category {
-        font-size: 8px;
-        letter-spacing: 1.5px;
+    .catalog-categories::-webkit-scrollbar {
+        display: none;
     }
 
-    .product-info h3 {
-        font-size: 16px;
+    .category-link {
+        flex-shrink: 0;
+
+        min-width: auto;
+
+        padding: 10px 17px;
     }
 
-    .product-price {
-        font-size: 11px;
-    }
 
-    .featured-ribbon {
-        top: 15px;
-        right: -36px;
+    .catalog-products {
+        grid-template-columns: 1fr;
 
-        width: 115px;
-
-        font-size: 7px;
-    }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 400px) {
-
-    .product-card {
-        flex-basis: 58vw;
-    }
-}
-
-
-/* =========================================================
-   VERY WIDE SCREENS
-========================================================= */
-
-@media (min-width: 1800px) {
-
-    .product-card {
-        flex-basis: 280px;
+        gap: 20px;
     }
 }
