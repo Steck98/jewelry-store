@@ -1,0 +1,222 @@
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+.login-page {
+    min-height: calc(100vh - 70px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 80px 20px;
+
+    background: var(--background);
+}
+
+.login-container {
+    width: min(460px, 100%);
+
+    padding: 55px 50px 50px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-soft);
+
+    text-align: center;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.login-eyebrow {
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: var(--gold-dark);
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.login-container h1 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.05;
+}
+
+.login-container h1 span {
+    color: var(--gold);
+}
+
+.login-description {
+    max-width: 330px;
+
+    margin: 20px auto 35px;
+
+    color: var(--muted);
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    text-align: left;
+}
+
+.login-field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.login-field label {
+    color: var(--text);
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+}
+
+.login-field input {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 0 14px;
+
+    color: var(--text);
+    background: var(--background);
+
+    border: 1px solid var(--border);
+
+    outline: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.login-field input::placeholder {
+    color: var(--muted);
+}
+
+.login-field input:focus {
+    border-color: var(--border-strong);
+
+    box-shadow: var(--gold-glow);
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.login-button {
+    width: 100%;
+
+    min-height: 50px;
+
+    margin-top: 5px;
+
+    color: var(--white);
+    background: var(--gold);
+
+    border: 1px solid var(--gold);
+
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.login-button:hover {
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+}
+
+/* =========================================================
+   REGISTER LINK
+========================================================= */
+
+.login-register {
+    margin: 28px 0 0;
+
+    color: var(--muted);
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+}
+
+.login-register a {
+    color: var(--gold-dark);
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.login-register a:hover {
+    color: var(--text);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 550px) {
+
+    .login-page {
+        min-height: calc(100vh - 58px);
+
+        padding: 50px 18px;
+    }
+
+    .login-container {
+        padding: 42px 25px 35px;
+    }
+
+    .login-container h1 {
+        font-size: 44px;
+    }
+
+    .login-description {
+        font-size: 12px;
+    }
+}
