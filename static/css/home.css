@@ -303,10 +303,197 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 22px;
 }
+/* ---------- PRODUCT CARDS ---------- */
+
+.product-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.025),
+            transparent 45%
+        ),
+        var(--marble);
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+
+    border-color: var(--border-strong);
+
+    box-shadow:
+        var(--shadow),
+        var(--gold-glow);
+}
 
 
-/* ---------- COLLECTIONS ---------- */
+.product-image {
+    display: block;
 
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    overflow: hidden;
+
+    background: var(--marble-light);
+
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+
+.product-info {
+    padding:
+        17px 18px 20px;
+}
+
+.product-category {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--gold);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.product-info h3 {
+    margin-bottom: 8px;
+
+    color: var(--white);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 20px;
+
+    font-weight: normal;
+
+    line-height: 1.2;
+}
+
+.product-price {
+    color: var(--text);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+}
+
+
+/* ---------- FEATURED RIBBON ---------- */
+
+.featured-ribbon {
+    position: absolute;
+
+    top: 18px;
+    right: -32px;
+
+    z-index: 2;
+
+    width: 125px;
+
+    padding: 6px 0;
+
+    color: var(--black);
+
+    background: var(--gold);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    text-align: center;
+
+    transform: rotate(45deg);
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ---------- PRODUCT CARDS RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+
+    .product-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .product-info {
+        padding:
+            13px
+            13px
+            16px;
+    }
+
+    .product-category {
+        font-size: 8px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .product-info h3 {
+        font-size: 16px;
+    }
+
+    .product-price {
+        font-size: 11px;
+    }
+
+    .featured-ribbon {
+        top: 15px;
+        right: -36px;
+
+        width: 115px;
+
+        font-size: 7px;
+    }
+}
 /* ---------- COLLECTIONS ---------- */
 
 .home-collections {

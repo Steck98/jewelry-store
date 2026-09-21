@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}
+ALVEA | Shop
+{% endblock %}
+
+{% block content %}
+
+<section class="catalog-header">
+
+    <span class="catalog-eyebrow">
+        ALVEA COLLECTION
+    </span>
+
+    <h1>
+        Shop
+    </h1>
+
+    <p>
+        Discover our collection of timeless jewelry, designed to complement every occasion.
+    </p>
+
+</section>
+
+
+<section class="catalog-page">
+
+    <div class="catalog-categories">
+
+        <a href="/products/" class="category-link">
+            All
+        </a>
+
+        {% for category in categories %}
+
+            <a
+                href="/products/?category={{ category.name }}"
+                class="category-link"
+            >
+                {{ category.name }}
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="catalog-products">
+
+        {% for product in products %}
+
+            <article class="catalog-product-card">
+
+                <a
+                    href="/products/{{ product.id }}/"
+                    class="catalog-product-image"
+                >
+
+                    {% if product.image %}
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}"
+                        >
+                    {% endif %}
+
+                </a>
+
+                <div class="catalog-product-info">
+
+                    <span class="catalog-product-category">
+                        {{ product.category }}
+                    </span>
+
+                    <h2>
+                        {{ product.name }}
+                    </h2>
+
+                    <p>
+                        ${{ product.price }}
+                    </p>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <p class="catalog-empty">
+                No products found.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
